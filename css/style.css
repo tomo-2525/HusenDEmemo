@@ -1,0 +1,38 @@
+form{
+background-color: #ccc;
+border:solid #999 1px;
+width:620px;
+padding: 10px;
+}
+
+#memoArea {
+    background-color: #eee;
+    border: solid #999 1px;
+    width: 620px;
+    height: 480px;
+    padding: 10px;
+}
+
+.memo{
+    text-decoration: none;
+    color: #000;
+    position:absolute;
+    left:50px;
+    top:80px;
+    border:solid #999 1px;
+    width: 180px;
+    height: 40px;
+    padding: 10px;
+}
+
+.yellow{
+    background-color:#FFC;
+}
+
+.red{
+    background-color: #FCC;
+}
+
+.green{
+    background-color: #CFC;
+}
