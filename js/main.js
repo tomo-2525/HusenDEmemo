@@ -55,9 +55,9 @@ function dropMemo(event) {
     memoElement.style.left = event.clientX - offsetX + "px";
     memoElement.style.top = event.clientY - offsetY + "px";
     //
-    var memo = memoArray[id];
+    // var memo = memoArray[id];
 
-    memo.move(event.clientX - offsetX, event.clientY - offsetY);
+    // memo.move(event.clientX - offsetX, event.clientY - offsetY);
 
 }
 
@@ -90,9 +90,9 @@ function addMemo() {
     memoArea.appendChild(memoElement);
     //
 
-    var memo = new Memo(memoCurrentId, memoText, memoColr, 50, 80);
-    memo.create();
-    memoArray[memo.id] = memo;
+    // var memo = new Memo(memoCurrentId, memoText, memoColr, 50, 80);
+    // memo.create();
+    // memoArray[memo.id] = memo;
 
     memoCurrentId++;
 }
