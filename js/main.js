@@ -51,10 +51,10 @@ Memo.prototype.save = function () {
         "color": this.color,
         "x": this.x,
         "y": this.y
-    }
+    };
 
     var memoStringJSON = JSON.stringify(memoJSON);
-    localStroage.setItem(this.id, memoStringJSON);
+    localStorage.setItem(this.id, memoStringJSON);
 };
 
 function loadMemo() {
