@@ -145,5 +145,5 @@ function addMemo() {
     memoArray[memo.id] = memo;
 
     memoCurrentId++;
-    localStorage.setItem("memoCurrentID", memoCurrentId);
+    localStorage.setItem("memoCurrentId", memoCurrentId);
 }
