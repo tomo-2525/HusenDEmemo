@@ -13,6 +13,15 @@ padding: 10px;
     padding: 10px;
 }
 
+#trashArea {
+    background-color: #69C;
+    color: #FFF;
+    border: dashed #336 1px;
+    width: 620px;
+    height: 100px;
+    padding: 10px;
+}
+
 .memo{
     text-decoration: none;
     color: #000;

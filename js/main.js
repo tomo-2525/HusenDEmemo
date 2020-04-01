@@ -37,12 +37,57 @@ Memo.prototype.move = function (x, y) {
 };
 
 Memo.prototype.remove = function () {
-
+    var memoElement = document.getElementById(this.id);
+    var memoArea = document.getElementById("memoArea");
+    memoArea.removeChild(memoElement);
+    localStorage.removeItem(this.id);
 };
 
+Memo.prototype.save = function () {
+
+    //JSON形式
+    var memoJSON = {
+        "text": this.text,
+        "color": this.color,
+        "x": this.x,
+        "y": this.y
+    }
+
+    var memoStringJSON = JSON.stringify(memoJSON);
+    localStroage.setItem(this.id, memoStringJSON);
+};
+
+function loadMemo() {
+    memoCurrentId = localStorage.getItem("memoCurrentId");
+    if (memoCurrentId == null) memoCurrentId = 1;
+
+    for (var i = 1; i < memoCurrentId; i++) {
+        var memoId = "memo" + i;
+
+        var memoJSON = localStorage.getItem(memoId);
+
+        if (memoJSON != null) {
+            var memoData = JSON.parse(memoJSON);
+
+            var memoText = memoData.text;
+            var memoColor = memoData.color;
+            var memoX = memoData.x;
+            var memoY = memoData.y;
+
+            var memo = new Memo(i, memoText, memoColor, memoX, memoY);
+            memo.create();
+            memo.save();
+            memo.move(memo.x, memo.y);
+            memoArray[memo.id] = memo;
+        }
+    }
+}
 
 function dropTrash(event) {
-
+    var id = event.dataTransfer.getData("text");
+    var memo = memoArray[id];
+    memo.remove();
+    delete memoArray[id];
 };
 
 
@@ -65,7 +110,7 @@ function dropMemo(event) {
     //
     var memo = memoArray[id];
     memo.move(event.clientX - offsetX, event.clientY - offsetY);
-
+    memo.save();
 }
 
 function dragOverMemo(event) {
@@ -84,22 +129,21 @@ function addMemo() {
 
     //
     // var memoElement = document.createElement("a");
-
     // memoElement.href = "#";
     // memoElement.id = "memo" + memoCurrentId;
     // memoElement.className = "memo " + memoColor;
     // memoElement.draggable = true;
-
     // memoElement.ondragstart = dragMemo;
     // memoElement.innerHTML = memoText;
-
     // var memoArea = document.getElementById("memoArea");
     // memoArea.appendChild(memoElement);
     //
 
     var memo = new Memo(memoCurrentId, memoText, memoColor, 50, 80);
     memo.create();
+    memo.save();
     memoArray[memo.id] = memo;
 
     memoCurrentId++;
+    localStorage.setItem("memoCurrentID", memoCurrentId);
 }
