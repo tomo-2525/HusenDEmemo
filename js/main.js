@@ -13,8 +13,7 @@ function Memo(id, text, color, x, y) {
     this.y = y;
 
     this.create = function () {
-        var memoElement = documet.createElement("a");
-
+        var memoElement = document.createElement("a");
         memoElement.href = "#";
         memoElement.id = this.id;
         memoElement.className = "memo " + this.color;
@@ -37,6 +36,15 @@ Memo.prototype.move = function (x, y) {
     memoElement.style.top = y + "px";
 };
 
+Memo.prototype.remove = function () {
+
+};
+
+
+function dropTrash(event) {
+
+};
+
 
 function dragMemo(event) {
     event.dataTransfer.setData("text", event.target.id);
@@ -51,13 +59,12 @@ function dropMemo(event) {
 
     var id = event.dataTransfer.getData("text");
     //
-    var memoElement = document.getElementById(id);
-    memoElement.style.left = event.clientX - offsetX + "px";
-    memoElement.style.top = event.clientY - offsetY + "px";
+    // var memoElement = document.getElementById(id);
+    // memoElement.style.left = event.clientX - offsetX + "px";
+    // memoElement.style.top = event.clientY - offsetY + "px";
     //
-    // var memo = memoArray[id];
-
-    // memo.move(event.clientX - offsetX, event.clientY - offsetY);
+    var memo = memoArray[id];
+    memo.move(event.clientX - offsetX, event.clientY - offsetY);
 
 }
 
@@ -69,30 +76,30 @@ function dragOverMemo(event) {
 function addMemo() {
     var memoText = document.getElementById("memoText").value;
 
-    var memoColr = "yellow";
+    var memoColor = "yellow";
 
     if (document.getElementById("memoY").checked) memoColor = "yellow";
     if (document.getElementById("memoR").checked) memoColor = "red";
     if (document.getElementById("memoG").checked) memoColor = "green";
 
     //
-    var memoElement = document.createElement("a");
+    // var memoElement = document.createElement("a");
 
-    memoElement.href = "#";
-    memoElement.id = "memo" + memoCurrentId;
-    memoElement.className = "memo " + memoColor;
-    memoElement.draggable = true;
+    // memoElement.href = "#";
+    // memoElement.id = "memo" + memoCurrentId;
+    // memoElement.className = "memo " + memoColor;
+    // memoElement.draggable = true;
 
-    memoElement.ondragstart = dragMemo;
-    memoElement.innerHTML = memoText;
+    // memoElement.ondragstart = dragMemo;
+    // memoElement.innerHTML = memoText;
 
-    var memoArea = document.getElementById("memoArea");
-    memoArea.appendChild(memoElement);
+    // var memoArea = document.getElementById("memoArea");
+    // memoArea.appendChild(memoElement);
     //
 
-    // var memo = new Memo(memoCurrentId, memoText, memoColr, 50, 80);
-    // memo.create();
-    // memoArray[memo.id] = memo;
+    var memo = new Memo(memoCurrentId, memoText, memoColor, 50, 80);
+    memo.create();
+    memoArray[memo.id] = memo;
 
     memoCurrentId++;
 }
